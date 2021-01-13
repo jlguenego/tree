@@ -1,5 +1,10 @@
 import assert from 'assert';
-import {flattenTree, getLeaves, getNodeArrayDepthFirst} from '../src';
+import {
+  flattenTree,
+  getLeaves,
+  getNodeArrayBreadthFirst,
+  getNodeArrayDepthFirst,
+} from '../src';
 import {getTreeFromAdjacencyList} from '../src/adjacency-utils';
 import {AdjacencyList} from '../src/interfaces/AdjacencyList';
 
@@ -27,5 +32,10 @@ describe('Flatten Unit Test', () => {
     const nodes = getNodeArrayDepthFirst(tree);
 
     assert.deepStrictEqual(nodes, ['1', '2', '5', '6', '7', '8', '3', '4']);
+  });
+
+  it('tests getNodeArrayBreadthFirst', () => {
+    const nodes = getNodeArrayBreadthFirst(tree);
+    assert.deepStrictEqual(nodes, ['1', '2', '3', '4', '5', '6', '7', '8']);
   });
 });

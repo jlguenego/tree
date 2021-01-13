@@ -33,3 +33,25 @@ export const getNodeArrayDepthFirst = <T>(tree: Tree<T>): T[] => {
   result.push(...childrenNodes);
   return result;
 };
+
+export const getNodeArrayBreadthFirst = <T>(tree: Tree<T>): T[] => {
+  const result = [];
+  const handles = [tree];
+
+  while (true) {
+    const t = handles.shift();
+    if (t === undefined) {
+      break;
+    }
+
+    result.push(t.node);
+    if (!isBranchNode(t)) {
+      continue;
+    }
+    for (const c of t.children) {
+      handles.push(c);
+    }
+  }
+
+  return result;
+};
