@@ -34,10 +34,10 @@ export const getTreeFromAdjacencyList = (
     getTreeFromAdjacencyList(getSubTreeAdjList(adjacencyList, c))
   );
   const result = {
-    v: root,
+    node: root,
   } as Tree<string>;
   if (children.length > 0) {
-    result.c = children;
+    result.children = children;
   }
   return result;
 };
@@ -58,10 +58,10 @@ export const getTreeFromAdjacencyListAndNodeMap = <T>(
     )
   );
   const result = {
-    v: rootNode,
+    node: rootNode,
   } as Tree<T>;
   if (children.length > 0) {
-    result.c = children;
+    result.children = children;
   }
   return result;
 };

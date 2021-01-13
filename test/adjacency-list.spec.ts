@@ -16,14 +16,17 @@ describe('Adjacency Unit Test', () => {
 
     const tree = getTreeFromAdjacencyList(adjList);
     const expectedTree = {
-      v: '1',
-      c: [
+      node: '1',
+      children: [
         {
-          v: '2',
-          c: [{v: '5'}, {v: '6', c: [{v: '7'}, {v: '8'}]}],
+          node: '2',
+          children: [
+            {node: '5'},
+            {node: '6', children: [{node: '7'}, {node: '8'}]},
+          ],
         },
-        {v: '3'},
-        {v: '4'},
+        {node: '3'},
+        {node: '4'},
       ],
     };
     assert.deepStrictEqual(tree, expectedTree);
@@ -49,17 +52,20 @@ describe('Adjacency Unit Test', () => {
 
     const tree = getTreeFromAdjacencyListAndNodeMap(adjList, nodeMap);
     const expectedTree = {
-      v: 'lorem',
-      c: [
+      node: 'lorem',
+      children: [
         {
-          v: 'ipsum',
-          c: [
-            {v: 'amet'},
-            {v: 'consectetur', c: [{v: 'adipiscing'}, {v: 'elit'}]},
+          node: 'ipsum',
+          children: [
+            {node: 'amet'},
+            {
+              node: 'consectetur',
+              children: [{node: 'adipiscing'}, {node: 'elit'}],
+            },
           ],
         },
-        {v: 'dolor'},
-        {v: 'sit'},
+        {node: 'dolor'},
+        {node: 'sit'},
       ],
     };
     assert.deepStrictEqual(tree, expectedTree);

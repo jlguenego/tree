@@ -1,4 +1,9 @@
 export interface Tree<T> {
-  v: T;
-  c?: Tree<T>[];
+  node: T;
+  children?: Tree<T>[];
+}
+
+export interface BranchNode<T> {
+  node: T;
+  children: Tree<T>[];
 }
