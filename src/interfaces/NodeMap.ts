@@ -1,1 +1,3 @@
-export type NodeMap<T> = Map<string, T>;
+export type NodeMap<T> = {
+  [key: string]: T;
+};

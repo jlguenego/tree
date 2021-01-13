@@ -47,7 +47,7 @@ export const getTreeFromAdjacencyListAndNodeMap = <T>(
   nodeMap: NodeMap<T>
 ): Tree<T> => {
   const root = getRoot(adjacencyList);
-  const rootNode = nodeMap.get(root);
+  const rootNode = nodeMap[root];
   if (!rootNode) {
     throw new Error('Cannot get node for id = ' + root);
   }
