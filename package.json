@@ -1,24 +1,33 @@
 {
-  "name": "tree",
+  "name": "@jlguenego/tree",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Just Tree algorithms.",
+  "main": "./build/src/index.js",
+  "module": "build_esm/src/index.js",
+  "private": false,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "nyc mocha",
     "lint": "gts lint",
     "clean": "gts clean",
     "compile": "tsc",
+    "compile:esm": "tsc --project tsconfig.esm.json",
     "fix": "gts fix",
     "prepare": "npm.cmd run compile",
     "pretest": "npm.cmd run compile",
-    "posttest": "npm.cmd run lint"
+    "posttest": "npm.cmd run lint",
+    "release": "standard-version"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/mocha": "^8.2.0",
+    "@types/node": "^14.11.2",
     "gts": "^3.1.0",
-    "typescript": "^4.0.3",
-    "@types/node": "^14.11.2"
+    "mocha": "^8.2.1",
+    "nyc": "^15.1.0",
+    "standard-version": "^9.1.0",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.0.3"
   }
 }
