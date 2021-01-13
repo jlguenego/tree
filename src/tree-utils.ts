@@ -21,3 +21,15 @@ export const getLeaves = <T>(tree: Tree<T>): Array<LeafNode<T>> => {
     .map(c => getLeaves(c))
     .reduce((acc, n) => acc.concat(n), []);
 };
+
+export const getNodeArrayDepthFirst = <T>(tree: Tree<T>): T[] => {
+  const result = [tree.node];
+  if (!isBranchNode(tree)) {
+    return result;
+  }
+  const childrenNodes = tree.children
+    .map(c => getNodeArrayDepthFirst(c))
+    .reduce((acc, n) => acc.concat(n), []);
+  result.push(...childrenNodes);
+  return result;
+};
