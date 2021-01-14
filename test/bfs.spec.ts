@@ -1,5 +1,5 @@
 import assert from 'assert';
-import {BFSTree} from '../src/BFSTree';
+import {BFSTree} from '../src';
 
 describe('BFS Unit Test', () => {
   it('test BFS search', () => {

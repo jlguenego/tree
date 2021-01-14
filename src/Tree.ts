@@ -125,12 +125,12 @@ export class Tree<T> {
     stock.children.splice(index, 0, scion);
   }
 
-  find(node: T): Tree<T> | undefined {
+  find(testFn: (t: Tree<T>) => boolean): Tree<T> | undefined {
     if (this.isLeaf()) {
-      return this.node === node ? this : undefined;
+      return testFn(this) ? this : undefined;
     }
     for (const c of this.children) {
-      const found = c.find(node);
+      const found = c.find(testFn);
       if (found) {
         return found;
       }

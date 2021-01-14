@@ -1,5 +1,5 @@
 import assert from 'assert';
-import {Tree, TreeObject} from '../src';
+import {AdjacencyList, Tree, TreeObject} from '../src';
 
 describe('Grafting Unit Test', () => {
   it('test graft', () => {
@@ -21,5 +21,17 @@ describe('Grafting Unit Test', () => {
       node: 23,
       children: [{node: 12, children: [{node: 45}, {node: 46}]}],
     });
+  });
+
+  it('test find', () => {
+    const adjList: AdjacencyList = {
+      1: ['2', '3', '4'],
+      2: ['5', '6'],
+      6: ['7', '8'],
+    };
+
+    const tree = Tree.fromAdjencyList(adjList);
+    const subtree = tree.find(t => t.node === '8') as Tree<string>;
+    assert.deepStrictEqual(subtree.toObject(), {node: '8'});
   });
 });
