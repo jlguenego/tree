@@ -1,14 +1,14 @@
 import {Tree} from './Tree';
 
-export type BFSTreeTestValueFn<T> = (value: T) => boolean;
-export type BFSTreeGetChildrenFn<T> = (value: T) => T[];
+export type DFSTreeTestValueFn<T> = (value: T) => boolean;
+export type DFSTreeGetChildrenFn<T> = (value: T) => T[];
 
-export class BFSTree<T> {
+export class DFSTree<T> {
   currentTree: Tree<T>;
   constructor(
     private initValue: T,
-    private test: BFSTreeTestValueFn<T>,
-    private getChildren: BFSTreeGetChildrenFn<T>
+    private test: DFSTreeTestValueFn<T>,
+    private getChildren: DFSTreeGetChildrenFn<T>
   ) {
     this.currentTree = new Tree<T>(this.initValue);
   }
@@ -26,11 +26,11 @@ export class BFSTree<T> {
       if (this.test(currentValue.node)) {
         return currentValue.node;
       }
-      const children = this.getChildren(currentValue.node);
+      const children = this.getChildren(currentValue.node).reverse();
       for (const c of children) {
         const scion = new Tree<T>(c);
         this.currentTree.graft(currentValue, scion);
-        stack.push(scion);
+        stack.unshift(scion);
       }
     }
   }
