@@ -110,8 +110,8 @@ export class Tree<T> {
     );
   }
 
-  graft(stock: Tree<T>, scion: Tree<T>, index = 0): void {
-    if (stock.isLeaf()) {
+  graft(stock: Tree<T>, scion: Tree<T>, index?: number): void {
+    if (stock.isLeaf() || index === undefined) {
       stock.children.push(scion);
       return;
     }
