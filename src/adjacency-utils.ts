@@ -1,6 +1,4 @@
 import {AdjacencyList} from './interfaces/AdjacencyList';
-import {NodeMap} from './interfaces/NodeMap';
-import {Tree} from './interfaces/Tree';
 
 export function getRoot(t: AdjacencyList): string {
   const children: string[] = Object.values(t).reduce(
@@ -25,43 +23,3 @@ export function getSubTreeAdjList(t: AdjacencyList, n: string): AdjacencyList {
     [n]: t[n],
   });
 }
-
-export const getTreeFromAdjacencyList = (
-  adjacencyList: AdjacencyList
-): Tree<string> => {
-  const root = getRoot(adjacencyList);
-  const children = adjacencyList[root].map(c =>
-    getTreeFromAdjacencyList(getSubTreeAdjList(adjacencyList, c))
-  );
-  const result = {
-    node: root,
-  } as Tree<string>;
-  if (children.length > 0) {
-    result.children = children;
-  }
-  return result;
-};
-
-export const getTreeFromAdjacencyListAndNodeMap = <T>(
-  adjacencyList: AdjacencyList,
-  nodeMap: NodeMap<T>
-): Tree<T> => {
-  const root = getRoot(adjacencyList);
-  const rootNode = nodeMap[root];
-  if (!rootNode) {
-    throw new Error('Cannot get node for id = ' + root);
-  }
-  const children = adjacencyList[root].map(c =>
-    getTreeFromAdjacencyListAndNodeMap(
-      getSubTreeAdjList(adjacencyList, c),
-      nodeMap
-    )
-  );
-  const result = {
-    node: rootNode,
-  } as Tree<T>;
-  if (children.length > 0) {
-    result.children = children;
-  }
-  return result;
-};

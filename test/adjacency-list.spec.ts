@@ -1,8 +1,5 @@
 import assert from 'assert';
-import {
-  getTreeFromAdjacencyList,
-  getTreeFromAdjacencyListAndNodeMap,
-} from '../src/adjacency-utils';
+import {Tree} from '../src';
 import {AdjacencyList} from '../src/interfaces/AdjacencyList';
 import {NodeMap} from '../src/interfaces/NodeMap';
 
@@ -14,8 +11,8 @@ describe('Adjacency Unit Test', () => {
       6: ['7', '8'],
     };
 
-    const tree = getTreeFromAdjacencyList(adjList);
-    const expectedTree = {
+    const tree = Tree.fromAdjencyList(adjList);
+    const expectedTree = Tree.fromObject({
       node: '1',
       children: [
         {
@@ -28,7 +25,7 @@ describe('Adjacency Unit Test', () => {
         {node: '3'},
         {node: '4'},
       ],
-    };
+    });
     assert.deepStrictEqual(tree, expectedTree);
   });
 
@@ -50,8 +47,8 @@ describe('Adjacency Unit Test', () => {
       'elit',
     ] as unknown) as NodeMap<string>;
 
-    const tree = getTreeFromAdjacencyListAndNodeMap(adjList, nodeMap);
-    const expectedTree = {
+    const tree = Tree.fromAdjacencyListAndNodeMap(adjList, nodeMap);
+    const expectedTree = Tree.fromObject({
       node: 'lorem',
       children: [
         {
@@ -67,7 +64,7 @@ describe('Adjacency Unit Test', () => {
         {node: 'dolor'},
         {node: 'sit'},
       ],
-    };
+    });
     assert.deepStrictEqual(tree, expectedTree);
   });
 });

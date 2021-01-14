@@ -1,12 +1,5 @@
 import assert from 'assert';
-import {
-  flattenTree,
-  getLeaves,
-  getNodeArrayBreadthFirst,
-  getNodeArrayDepthFirst,
-} from '../src';
-import {getTreeFromAdjacencyList} from '../src/adjacency-utils';
-import {AdjacencyList} from '../src/interfaces/AdjacencyList';
+import {AdjacencyList, Tree} from '../src';
 
 const adjList: AdjacencyList = {
   1: ['2', '3', '4'],
@@ -14,28 +7,28 @@ const adjList: AdjacencyList = {
   6: ['7', '8'],
 };
 
-const tree = getTreeFromAdjacencyList(adjList);
+const tree = Tree.fromAdjencyList(adjList);
 
 describe('Flatten Unit Test', () => {
   it('tests flattenTree', () => {
-    const flatArray = flattenTree(tree);
+    const flatArray = tree.flatten();
     assert.deepStrictEqual(flatArray, ['5', '7', '8', '3', '4']);
   });
 
   it('tests getLeaves', () => {
-    const flatArray = getLeaves(tree).map(leaf => leaf.node);
+    const flatArray = tree.getLeaves().map(leaf => leaf.node);
 
     assert.deepStrictEqual(flatArray, ['5', '7', '8', '3', '4']);
   });
 
   it('tests getNodeArrayDepthFirst', () => {
-    const nodes = getNodeArrayDepthFirst(tree);
+    const nodes = tree.enumerateDepthFirst();
 
     assert.deepStrictEqual(nodes, ['1', '2', '5', '6', '7', '8', '3', '4']);
   });
 
   it('tests getNodeArrayBreadthFirst', () => {
-    const nodes = getNodeArrayBreadthFirst(tree);
+    const nodes = tree.enumerateBreathFirst();
     assert.deepStrictEqual(nodes, ['1', '2', '3', '4', '5', '6', '7', '8']);
   });
 });
