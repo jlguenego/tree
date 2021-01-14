@@ -15,6 +15,7 @@
     "prepare": "npm.cmd run compile",
     "pretest": "npm.cmd run compile",
     "posttest": "npm.cmd run lint",
+    "prerelease": "npm run compile && npm run compile:esm",
     "release": "standard-version"
   },
   "keywords": [],
