@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/jlguenego/tree/compare/v1.1.0...v1.1.1) (2021-01-14)
+
+
+### Bug Fixes
+
+* added target prerelease ([f1c8c1e](https://github.com/jlguenego/tree/commit/f1c8c1e8a31bb5e89e33ef577a0e4f88c779ffad))
+
 ## 1.1.0 (2021-01-14)
 
 
