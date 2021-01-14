@@ -43,6 +43,13 @@ export class Tree<T> {
 
   constructor(public node: T, public children: Tree<T>[] = []) {}
 
+  toObject(): TreeObject<T> {
+    if (this.isLeaf()) {
+      return {node: this.node};
+    }
+    return {node: this.node, children: this.children.map(c => c.toObject())};
+  }
+
   isBranch(): boolean {
     return this.children !== undefined && this.children.length > 0;
   }
