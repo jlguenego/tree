@@ -35,6 +35,11 @@ export class BFSTreeAsync<T> {
         return undefined;
       }
       if (await this.test(currentValue.node)) {
+        stack.length = 0;
+        this.subject.next({
+          tree: this.currentTree,
+          stack: stack,
+        });
         return currentValue.node;
       }
       const children = await this.getChildren(currentValue.node);
