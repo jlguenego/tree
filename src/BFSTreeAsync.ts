@@ -7,6 +7,7 @@ export type BFSTreeAsyncGetChildrenFn<T> = (value: T) => Promise<T[]>;
 export interface BFSTreeInfo<T> {
   tree: Tree<T>;
   stack: Tree<T>[];
+  currentValue?: Tree<T>;
 }
 
 export class BFSTreeAsync<T> {
@@ -34,11 +35,17 @@ export class BFSTreeAsync<T> {
       if (currentValue === undefined) {
         return undefined;
       }
+      this.subject.next({
+        tree: this.currentTree,
+        stack: stack,
+        currentValue: currentValue,
+      });
       if (await this.test(currentValue.node)) {
         stack.length = 0;
         this.subject.next({
           tree: this.currentTree,
           stack: stack,
+          currentValue: currentValue,
         });
         return currentValue.node;
       }
