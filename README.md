@@ -10,6 +10,13 @@ Please read the [wikipedia article on trees - computer science](<https://en.wiki
 npm i @jlguenego/tree
 ```
 
+This library exposes both:
+
+- **ES2015** module that can be tree-shaked by Webpack for Angular etc.
+- **CommonJS** module for traditionnal node way.
+
+It is ready to use for both browsers and node app.
+
 ## Usage
 
 ### Instantiation
