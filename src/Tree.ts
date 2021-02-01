@@ -88,7 +88,7 @@ export class Tree<T> {
     return result;
   }
 
-  enumerateBreathFirst(): T[] {
+  enumerateBreadthFirst(): T[] {
     const result = [];
     const handles: Tree<T>[] = [this];
 

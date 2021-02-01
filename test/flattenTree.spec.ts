@@ -28,7 +28,7 @@ describe('Flatten Unit Test', () => {
   });
 
   it('tests getNodeArrayBreadthFirst', () => {
-    const nodes = tree.enumerateBreathFirst();
+    const nodes = tree.enumerateBreadthFirst();
     assert.deepStrictEqual(nodes, ['1', '2', '3', '4', '5', '6', '7', '8']);
   });
 });

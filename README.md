@@ -116,7 +116,7 @@ A tree class instance has following methods:
 - `flatten()`: Returns a list of all leaf node values.
 - `getLeaves()`: Returns a list of all leaf subtrees.
 - `enumerateDepthFirst()`: Returns a list of all branches and leaves values (a child is completely recursively visited before processing the other children).
-- `enumerateBreathFirst()`: Returns a list of all branches and leaves values (all the first level children are first listed, then all the second level, and so on.).
+- `enumerateBreadthFirst()`: Returns a list of all branches and leaves values (all the first level children are first listed, then all the second level, and so on.).
 - `clone()`: returns a shallow clone of the tree. All the structure is duplicated but the node values are not cloned.
 - `find(cb: (subtree)=> boolean)`: Find the first subtree satisfying criteria specified by `cb`.
 
