@@ -1,5 +1,9 @@
 # Tree
 
+Tree in Javascript (and Typescript).
+
+Please read the [wikipedia article on trees - computer science](<https://en.wikipedia.org/wiki/Tree_(data_structure)>).
+
 ## Install
 
 ```
@@ -87,6 +91,38 @@ const tree = new Tree<number>(23, [
 ```
 
 This above example creates a tree with a root node (23) and 3 children leaf with 12, 13 and 7.
+
+## Reading tree structure
+
+A tree is just a class instance with 2 attributes:
+
+- `node`: representing the node value
+- `children`: reprensenting the node children.
+
+### Converting the tree to a simple object
+
+```ts
+tree.toObject();
+```
+
+### Tree API
+
+A tree class instance has following methods:
+
+#### Read only methods
+
+- `isBranch()`: Test if the tree has at least one child.
+- `isLeaf()`: Test if the tree has no child.
+- `flatten()`: Returns a list of all leaf node values.
+- `getLeaves()`: Returns a list of all leaf subtrees.
+- `enumerateDepthFirst()`: Returns a list of all branches and leaves values (a child is completely recursively visited before processing the other children).
+- `enumerateBreathFirst()`: Returns a list of all branches and leaves values (all the first level children are first listed, then all the second level, and so on.).
+- `clone()`: returns a shallow clone of the tree. All the structure is duplicated but the node values are not cloned.
+- `find(cb: (subtree)=> boolean)`: Find the first subtree satisfying criteria specified by `cb`.
+
+#### Modifying methods
+
+- `graft(stock, scion, index?)`: add a subtree (`scion`) to the tree (`stock`). Index can optionally be specified to indicate where to add the scion between the children.
 
 ## Author
 
