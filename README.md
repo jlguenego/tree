@@ -186,6 +186,10 @@ main();
 
 Do not hesitate to bring your contribution to this project. Fork and Pull Request are welcome.
 
+## License
+
+ISC
+
 ## Author
 
 Jean-Louis GUENEGO <jlguenego@gmail.com>
