@@ -124,6 +124,10 @@ A tree class instance has following methods:
 
 - `graft(stock, scion, index?)`: add a subtree (`scion`) to the tree (`stock`). Index can optionally be specified to indicate where to add the scion between the children.
 
+## Participating
+
+Do not hesitate to bring your contribution to this project. Fork and Pull Request are welcome.
+
 ## Author
 
 Jean-Louis GUENEGO <jlguenego@gmail.com>
