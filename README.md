@@ -124,6 +124,57 @@ A tree class instance has following methods:
 
 - `graft(stock, scion, index?)`: add a subtree (`scion`) to the tree (`stock`). Index can optionally be specified to indicate where to add the scion between the children.
 
+## Search
+
+This module give tools to perform Breadth-First-Search and Depth-First-Search, in a synchronous way and asynchronous way:
+
+- `BFSTree`: class for doing synchronous Breadth-First-Search.
+- `BFSTreeAsync`: class for doing asynchronous Breadth-First-Search.
+- `DFSTree`: class for doing synchronous Depth-First-Search.
+- `DFSTreeAsync`: class for doing asynchronous Depth-First-Search.
+
+Each class has the same interface:
+
+1. Instantiate the class by giving the Tree Trunk `initialValue`, the `test` method to check if the subtree is found, and the `getChildren` function for getting (or generating) the subree children if the subtree is not the searched one.
+2. Call the `search()` method to return the searched node value subtree if it exists or `undefined` if not./
+
+For asynchronous class, there is an observable (called `subject`) that can be subscribed to get some info about the search progression. See the famous [RxJS](https://github.com/ReactiveX/RxJS) library.
+
+### Example
+
+The example is done with Breadth-First-Search. Just repleace `BFSTree` with `DFSTree` if you want Depth-First-Search.
+
+#### Synchronous
+
+```ts
+const test = (n: number) => n > 10;
+const getChildren = (n: number) => [n + 1, n + 2, n + 3];
+const bfsTree = new BFSTree<number>(3, test, getChildren);
+const result = bfsTree.search();
+assert.deepStrictEqual(result, 11);
+```
+
+#### Asynchronous
+
+```ts
+async function main() {
+    this.timeout(20000);
+    const test = async (n: number) => n > 30;
+    const getChildren = async (n: number) => {
+      await sleep(10);
+      return [n + 1, 2 * n + 1];
+    };
+    const bfsTree = new BFSTreeAsync<number>(1, test, getChildren);
+    bfsTree.subject.subscribe(info => {
+      console.log('info: ', inspect(info, false, null));
+    });
+    const result = await bfsTree.search();
+    assert.deepStrictEqual(result, 31);
+  });
+}
+main();
+```
+
 ## Participating
 
 Do not hesitate to bring your contribution to this project. Fork and Pull Request are welcome.
@@ -131,3 +182,7 @@ Do not hesitate to bring your contribution to this project. Fork and Pull Reques
 ## Author
 
 Jean-Louis GUENEGO <jlguenego@gmail.com>
+
+```
+
+```
