@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/jlguenego/tree/compare/v1.2.0...v1.3.0) (2021-02-03)
+
+
+### Features
+
+* added async version with observable ([bdcb5bd](https://github.com/jlguenego/tree/commit/bdcb5bd4528281a4d7b234483545b200a4b69831))
+* added currentValue to observable ([02428a8](https://github.com/jlguenego/tree/commit/02428a8073ae5eebf517c744962b6883761d23b3))
+* interrupt on BFSTreeAsync ([80cec40](https://github.com/jlguenego/tree/commit/80cec407f4f91c4ff34a5f3553298b074519f047))
+
+
+### Bug Fixes
+
+* empty the stack at the end. ([0455646](https://github.com/jlguenego/tree/commit/04556465ddd638c01844cf8077ae5f24973c8613))
+
 ## [1.2.0](https://github.com/jlguenego/tree/compare/v1.1.1...v1.2.0) (2021-01-14)
 
 
