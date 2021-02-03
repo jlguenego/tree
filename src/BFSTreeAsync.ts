@@ -13,6 +13,7 @@ export interface BFSTreeInfo<T> {
 export class BFSTreeAsync<T> {
   currentTree: Tree<T>;
   subject = new Subject<BFSTreeInfo<T>>();
+  private keepGoing = true;
   constructor(
     private initValue: T,
     private test: BFSTreeAsyncTestValueFn<T>,
@@ -23,7 +24,8 @@ export class BFSTreeAsync<T> {
 
   async search(): Promise<T | undefined> {
     const stack = [this.currentTree];
-    while (true) {
+    this.keepGoing = true;
+    while (this.keepGoing) {
       this.subject.next({
         tree: this.currentTree,
         stack: stack,
@@ -56,5 +58,10 @@ export class BFSTreeAsync<T> {
         stack.push(scion);
       }
     }
+    return undefined;
+  }
+
+  interrupt() {
+    this.keepGoing = false;
   }
 }
