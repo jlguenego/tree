@@ -143,9 +143,11 @@ This module give tools to perform Breadth-First-Search and Depth-First-Search, i
 Each class has the same interface:
 
 1. Instantiate the class by giving the Tree Trunk `initialValue`, the `test` method to check if the subtree is found, and the `getChildren` function for getting (or generating) the subree children if the subtree is not the searched one.
-2. Call the `search()` method to return the searched node value subtree if it exists or `undefined` if not./
+2. Call the `search()` method to return the searched node value subtree if it exists or `undefined` if not.
 
-For asynchronous class, there is an observable (called `subject`) that can be subscribed to get some info about the search progression. See the famous [RxJS](https://github.com/ReactiveX/RxJS) library.
+For asynchronous class, there is :
+- an observable (called `subject`) that can be subscribed to get some info about the search progression. See the famous [RxJS](https://github.com/ReactiveX/RxJS) library.
+- the `interrupt()` method to stop searching.
 
 ### Example
 
