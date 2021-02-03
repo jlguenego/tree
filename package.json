@@ -18,8 +18,16 @@
     "prerelease": "npm run compile && npm run compile:esm",
     "release": "standard-version"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "bfs",
+    "dfs",
+    "tree",
+    "adjacency-list",
+    "async-tree",
+    "search",
+    "graft"
+  ],
+  "author": "Jean-Louis GUENEGO <jlguenego@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "@types/mocha": "^8.2.0",
