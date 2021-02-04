@@ -126,6 +126,8 @@ A tree class instance has following methods:
 - `enumerateBreadthFirst()`: Returns a list of all branches and leaves values (all the first level children are first listed, then all the second level, and so on.).
 - `clone()`: returns a shallow clone of the tree. All the structure is duplicated but the node values are not cloned.
 - `find(cb: (subtree)=> boolean)`: Find the first subtree satisfying criteria specified by `cb`.
+- `getPath(subtree): Retrieve the path of the subtree in the tree. Return an `number[]` if found with the children indexes, or `undefined` if not found.
+- `getSubtree(path)`: Returns the subtree matching the path if possible. Can throw error if bad path.
 
 #### Modifying methods
 
