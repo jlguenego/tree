@@ -137,4 +137,12 @@ export class Tree<T> {
     }
     return undefined;
   }
+
+  forEach(callback: (t: Tree<T>) => void): void {
+    callback(this);
+    for (const c of this.children) {
+      c.forEach(callback);
+    }
+    return;
+  }
 }
