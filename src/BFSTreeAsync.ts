@@ -43,6 +43,9 @@ export class BFSTreeAsync<T> {
         currentValue: currentValue,
       });
       if (await this.test(currentValue.node)) {
+        if (!this.keepGoing) {
+          break;
+        }
         stack.length = 0;
         this.subject.next({
           tree: this.currentTree,
@@ -52,6 +55,9 @@ export class BFSTreeAsync<T> {
         return currentValue.node;
       }
       const children = await this.getChildren(currentValue.node);
+      if (!this.keepGoing) {
+        break;
+      }
       for (const c of children) {
         const scion = new Tree<T>(c);
         this.currentTree.graft(currentValue, scion);
