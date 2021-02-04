@@ -145,4 +145,30 @@ export class Tree<T> {
     }
     return;
   }
+
+  getPath(subtree: Tree<T>): number[] | undefined {
+    if (this === subtree) {
+      return [];
+    }
+    if (this.isLeaf()) {
+      return undefined;
+    }
+    for (let i = 0; i < this.children.length; i++) {
+      const c = this.children[i];
+      const path = c.getPath(subtree);
+      if (path !== undefined) {
+        path.unshift(i);
+        return path;
+      }
+    }
+    return undefined;
+  }
+
+  getSubTree(path: number[]): Tree<T> {
+    if (path.length === 0) {
+      return this;
+    }
+    const subPath = path.slice(1);
+    return this.children[path[0]].getSubTree(subPath);
+  }
 }
