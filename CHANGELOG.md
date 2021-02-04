@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/jlguenego/tree/compare/v1.3.1...v1.4.0) (2021-02-04)
+
+
+### Features
+
+* added foreach with test ([fca52ee](https://github.com/jlguenego/tree/commit/fca52ee3d4f3ffe58a916a793b4e22f66fad93b6))
+* added getSubTree and getPath ([3419adf](https://github.com/jlguenego/tree/commit/3419adffce5a34aeebbd324283a118675cb16c26))
+
 ### [1.3.1](https://github.com/jlguenego/tree/compare/v1.3.0...v1.3.1) (2021-02-04)
 
 
