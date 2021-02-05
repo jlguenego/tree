@@ -171,4 +171,8 @@ export class Tree<T> {
     const subPath = path.slice(1);
     return this.children[path[0]].getSubTree(subPath);
   }
+
+  getSize(): number {
+    return this.children.reduce((acc, c) => acc + c.getSize(), 1);
+  }
 }
