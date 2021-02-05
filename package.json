@@ -1,6 +1,6 @@
 {
   "name": "@jlguenego/tree",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "Just Tree algorithms.",
   "main": "./build/src/index.js",
   "module": "build_esm/src/index.js",

@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/jlguenego/tree/compare/v1.4.1...v1.5.0) (2021-02-05)
+
+
+### Features
+
+* add metrics ([f615366](https://github.com/jlguenego/tree/commit/f615366a783b05368ccb66ab45084fa35f6f00c5))
+* added getSize ([2607765](https://github.com/jlguenego/tree/commit/26077651f2258c4f2d0ac591113567e78ee1e1fc))
+
 ### [1.4.1](https://github.com/jlguenego/tree/compare/v1.4.0...v1.4.1) (2021-02-04)
 
 ## [1.4.0](https://github.com/jlguenego/tree/compare/v1.3.1...v1.4.0) (2021-02-04)
