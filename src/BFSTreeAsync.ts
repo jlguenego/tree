@@ -32,7 +32,7 @@ export class BFSTreeAsync<T> {
   async search(): Promise<T | undefined> {
     const stack = [this.currentTree];
     let maxStackSize = stack.length;
-    let testNbr = 0;
+    let testNbr = 1;
     this.keepGoing = true;
     while (this.keepGoing) {
       this.subject.next({
@@ -61,7 +61,6 @@ export class BFSTreeAsync<T> {
           testNbr,
         },
       });
-      testNbr++;
       if (await this.test(currentValue.node)) {
         if (!this.keepGoing) {
           break;
@@ -89,6 +88,7 @@ export class BFSTreeAsync<T> {
         stack.push(scion);
       }
       maxStackSize = Math.max(maxStackSize, stack.length);
+      testNbr++;
     }
     return undefined;
   }
