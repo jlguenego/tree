@@ -4,10 +4,17 @@ import {Tree} from './Tree';
 export type BFSTreeAsyncTestValueFn<T> = (value: T) => Promise<boolean>;
 export type BFSTreeAsyncGetChildrenFn<T> = (value: T) => Promise<T[]>;
 
+export interface Metrics {
+  treeSize: number;
+  maxStackSize: number;
+  testNbr: number;
+}
+
 export interface BFSTreeInfo<T> {
   tree: Tree<T>;
   stack: Tree<T>[];
   currentValue?: Tree<T>;
+  metrics: Metrics;
 }
 
 export class BFSTreeAsync<T> {
@@ -24,11 +31,18 @@ export class BFSTreeAsync<T> {
 
   async search(): Promise<T | undefined> {
     const stack = [this.currentTree];
+    let maxStackSize = stack.length;
+    let testNbr = 0;
     this.keepGoing = true;
     while (this.keepGoing) {
       this.subject.next({
         tree: this.currentTree,
         stack: stack,
+        metrics: {
+          treeSize: this.currentTree.getSize(),
+          maxStackSize,
+          testNbr,
+        },
       });
       if (stack.length === 0) {
         return undefined;
@@ -41,7 +55,13 @@ export class BFSTreeAsync<T> {
         tree: this.currentTree,
         stack: stack,
         currentValue: currentValue,
+        metrics: {
+          treeSize: this.currentTree.getSize(),
+          maxStackSize,
+          testNbr,
+        },
       });
+      testNbr++;
       if (await this.test(currentValue.node)) {
         if (!this.keepGoing) {
           break;
@@ -51,6 +71,11 @@ export class BFSTreeAsync<T> {
           tree: this.currentTree,
           stack: stack,
           currentValue: currentValue,
+          metrics: {
+            treeSize: this.currentTree.getSize(),
+            maxStackSize,
+            testNbr,
+          },
         });
         return currentValue.node;
       }
@@ -63,6 +88,7 @@ export class BFSTreeAsync<T> {
         this.currentTree.graft(currentValue, scion);
         stack.push(scion);
       }
+      maxStackSize = Math.max(maxStackSize, stack.length);
     }
     return undefined;
   }
