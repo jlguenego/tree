@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/jlguenego/tree/compare/v1.6.0...v1.7.0) (2021-02-08)
+
+
+### Features
+
+* added DFSTree async ([64aa0f4](https://github.com/jlguenego/tree/commit/64aa0f400e982ebc79238aa5ea0964f52dd8d002))
+
 ## [1.6.0](https://github.com/jlguenego/tree/compare/v1.5.0...v1.6.0) (2021-02-08)
 
 
