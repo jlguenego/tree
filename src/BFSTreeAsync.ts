@@ -6,7 +6,8 @@ export type BFSTreeAsyncTestValueFn<T> = (value: T) => Promise<boolean>;
 export type BFSTreeAsyncGetChildrenFn<T> = (value: T) => Promise<T[]>;
 
 export class BFSTreeAsync<T> {
-  private keepGoing = true;
+  searching = false;
+  interrupted = false;
   found = false;
   foundValue: T | undefined = undefined;
 
@@ -30,6 +31,8 @@ export class BFSTreeAsync<T> {
   }
 
   reset() {
+    this.searching = false;
+    this.interrupted = false;
     this.currentTree = new Tree<T>(this.initValue);
     this.stack = [this.currentTree];
     this.maxStackSize = this.stack.length;
@@ -55,38 +58,39 @@ export class BFSTreeAsync<T> {
   }
 
   async search(): Promise<T | undefined> {
-    this.keepGoing = true;
+    this.searching = true;
+    this.interrupted = false;
     if (this.found) {
-      console.log('already found');
+      this.searching = false;
       return this.foundValue;
     }
-    while (this.keepGoing) {
+    while (!this.interrupted) {
       if (this.stack.length === 0) {
+        this.searching = false;
         return undefined;
       }
       this.currentValue = this.stack[0];
-      if (this.currentValue === undefined) {
-        return undefined;
-      }
       this.log();
       if (await this.test(this.currentValue.node)) {
         this.found = true;
         this.foundValue = this.currentValue.node;
-        if (!this.keepGoing) {
+        if (this.interrupted) {
           break;
         }
         this.stack.length = 0;
         this.log();
+        this.searching = false;
         return this.foundValue;
       }
       const children = await this.getChildren(this.currentValue.node);
-      if (!this.keepGoing) {
+      if (this.interrupted) {
         break;
       }
 
       // update the stack and add the children (synchrone)
       this.updateState(children);
     }
+    // still searching but interrupted.
     return undefined;
   }
 
@@ -102,6 +106,6 @@ export class BFSTreeAsync<T> {
   }
 
   interrupt() {
-    this.keepGoing = false;
+    this.interrupted = true;
   }
 }
