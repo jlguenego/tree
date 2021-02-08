@@ -45,7 +45,7 @@ export class BFSTreeAsync<T> {
         metrics: {
           treeSize: this.currentTree.getSize(),
           maxStackSize: this.maxStackSize,
-          testNbr: this.maxStackSize,
+          testNbr: this.testNbr,
         },
       });
       if (await this.test(currentValue.node)) {
@@ -60,7 +60,7 @@ export class BFSTreeAsync<T> {
           metrics: {
             treeSize: this.currentTree.getSize(),
             maxStackSize: this.maxStackSize,
-            testNbr: this.maxStackSize,
+            testNbr: this.testNbr,
           },
         });
         return currentValue.node;
