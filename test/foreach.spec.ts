@@ -1,7 +1,7 @@
 import assert from 'assert';
 import {AdjacencyList, Tree} from '../src';
 
-describe('Grafting Unit Test', () => {
+describe('Foreach Unit Test', () => {
   it('test foreach', () => {
     const adjList: AdjacencyList = {
       1: ['2', '3', '4'],

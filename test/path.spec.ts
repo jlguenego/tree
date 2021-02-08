@@ -1,7 +1,7 @@
 import assert from 'assert';
 import {AdjacencyList, Tree} from '../src';
 
-describe('Grafting Unit Test', () => {
+describe('Path Unit Test', () => {
   it('test getPath', () => {
     const adjList: AdjacencyList = {
       1: ['2', '3', '4'],

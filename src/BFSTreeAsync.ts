@@ -1,79 +1,66 @@
 import {Subject} from 'rxjs';
+import {BFSTreeInfo} from './interfaces/BFSTreeInfo';
 import {Tree} from './Tree';
 
 export type BFSTreeAsyncTestValueFn<T> = (value: T) => Promise<boolean>;
 export type BFSTreeAsyncGetChildrenFn<T> = (value: T) => Promise<T[]>;
 
-export interface Metrics {
-  treeSize: number;
-  maxStackSize: number;
-  testNbr: number;
-}
-
-export interface BFSTreeInfo<T> {
-  tree: Tree<T>;
-  stack: Tree<T>[];
-  currentValue?: Tree<T>;
-  metrics: Metrics;
-}
-
 export class BFSTreeAsync<T> {
   currentTree: Tree<T>;
+  stack: Tree<T>[];
   subject = new Subject<BFSTreeInfo<T>>();
   private keepGoing = true;
+  private maxStackSize = 0;
+  private testNbr = 0;
   constructor(
     private initValue: T,
     private test: BFSTreeAsyncTestValueFn<T>,
     private getChildren: BFSTreeAsyncGetChildrenFn<T>
   ) {
     this.currentTree = new Tree<T>(this.initValue);
+    this.stack = [this.currentTree];
+  }
+
+  reset() {
+    this.currentTree = new Tree<T>(this.initValue);
+    this.stack = [this.currentTree];
+    this.maxStackSize = this.stack.length;
+    this.testNbr = 0;
   }
 
   async search(): Promise<T | undefined> {
-    const stack = [this.currentTree];
-    let maxStackSize = stack.length;
-    let testNbr = 1;
     this.keepGoing = true;
     while (this.keepGoing) {
-      this.subject.next({
-        tree: this.currentTree,
-        stack: stack,
-        metrics: {
-          treeSize: this.currentTree.getSize(),
-          maxStackSize,
-          testNbr,
-        },
-      });
-      if (stack.length === 0) {
+      if (this.stack.length === 0) {
         return undefined;
       }
-      const currentValue = stack.shift();
+      const currentValue = this.stack.shift();
       if (currentValue === undefined) {
         return undefined;
       }
       this.subject.next({
         tree: this.currentTree,
-        stack: stack,
+        stack: this.stack,
         currentValue: currentValue,
         metrics: {
           treeSize: this.currentTree.getSize(),
-          maxStackSize,
-          testNbr,
+          maxStackSize: this.maxStackSize,
+          testNbr: this.maxStackSize,
         },
       });
       if (await this.test(currentValue.node)) {
         if (!this.keepGoing) {
           break;
         }
-        stack.length = 0;
+        this.stack.length = 0;
         this.subject.next({
           tree: this.currentTree,
-          stack: stack,
+          stack: this.stack,
           currentValue: currentValue,
           metrics: {
             treeSize: this.currentTree.getSize(),
-            maxStackSize,
-            testNbr,
+            maxStackSize: this.maxStackSize,
+            testNbr: this.maxStackSize,
           },
         });
         return currentValue.node;
@@ -85,10 +72,10 @@ export class BFSTreeAsync<T> {
       for (const c of children) {
         const scion = new Tree<T>(c);
         this.currentTree.graft(currentValue, scion);
-        stack.push(scion);
+        this.stack.push(scion);
       }
-      maxStackSize = Math.max(maxStackSize, stack.length);
-      testNbr++;
+      this.maxStackSize = Math.max(this.maxStackSize, this.stack.length);
+      this.testNbr++;
     }
     return undefined;
   }
