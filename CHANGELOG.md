@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/jlguenego/tree/compare/v1.5.0...v1.6.0) (2021-02-08)
+
+
+### Features
+
+* added reset on async ([e1e5dd4](https://github.com/jlguenego/tree/commit/e1e5dd4ef3f48e898224ebf814a48969d45c76e6))
+* added searching state ([576251f](https://github.com/jlguenego/tree/commit/576251f0df92278b551c020d7370ed1ee9a1d4b2))
+* BFSTree async interruptable ([7aad542](https://github.com/jlguenego/tree/commit/7aad5420401f7a3bb48942fda7ba42e05b011e64))
+
+
+### Bug Fixes
+
+* metrics ([c232927](https://github.com/jlguenego/tree/commit/c232927699febd1b9d9c06362d30e79a187e21fe))
+* testNbr ([26815ce](https://github.com/jlguenego/tree/commit/26815ceed35d81f6a12f3e9d207e7549475a5545))
+
 ## [1.5.0](https://github.com/jlguenego/tree/compare/v1.4.1...v1.5.0) (2021-02-05)
 
 
