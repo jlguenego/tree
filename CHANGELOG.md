@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/jlguenego/tree/compare/v1.7.0...v1.8.0) (2021-02-09)
+
+
+### Features
+
+* export more ([2af5be0](https://github.com/jlguenego/tree/commit/2af5be03717fb9db1838f69e49ac9001e2e373db))
+
 ## [1.7.0](https://github.com/jlguenego/tree/compare/v1.6.0...v1.7.0) (2021-02-08)
 
 
