@@ -3,4 +3,3 @@ build
 build_esm
 coverage
 .nyc_output
-node_modules
