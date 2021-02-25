@@ -76,15 +76,19 @@ export class Tree<T> {
       .reduce((acc, n) => acc.concat(n), []);
   }
 
-  enumerateDepthFirst(): T[] {
+  enumerateDepthFirst(postOrder = false): T[] {
     const result = [this.node];
     if (this.isLeaf()) {
       return result;
     }
     const childrenNodes = this.children
-      .map(c => c.enumerateDepthFirst())
+      .map(c => c.enumerateDepthFirst(postOrder))
       .reduce((acc, n) => acc.concat(n), []);
-    result.push(...childrenNodes);
+    if (postOrder) {
+      result.unshift(...childrenNodes);
+    } else {
+      result.push(...childrenNodes);
+    }
     return result;
   }
 
