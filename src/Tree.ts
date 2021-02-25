@@ -179,4 +179,13 @@ export class Tree<T> {
   getSize(): number {
     return this.children.reduce((acc, c) => acc + c.getSize(), 1);
   }
+
+  toString(): string {
+    if (this.isLeaf()) {
+      return this.node + '';
+    }
+    return (
+      this.node + '(' + this.children.map(c => c.toString()).join(' ') + ')'
+    );
+  }
 }
