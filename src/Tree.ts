@@ -180,6 +180,35 @@ export class Tree<T> {
     return this.children.reduce((acc, c) => acc + c.getSize(), 1);
   }
 
+  getDepth(subtree: Tree<T>): number {
+    const path = this.getPath(subtree);
+    if (path === undefined) {
+      throw new Error('Cannot get the path for subtree');
+    }
+    return path.length;
+  }
+
+  /**
+   * Maximum path length to a leaf
+   *
+   * @param {T} a
+   * @returns {number}
+   * @memberof Tree
+   */
+  getLevel(subtree: Tree<T>): number {
+    if (subtree.isLeaf()) {
+      return 0;
+    }
+    let result = 0;
+    for (const c of subtree.children) {
+      const level = this.getLevel(c);
+      if (result < level) {
+        result = level;
+      }
+    }
+    return result + 1;
+  }
+
   toString(): string {
     if (this.isLeaf()) {
       return this.node + '';
