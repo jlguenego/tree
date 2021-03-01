@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/jlguenego/tree/compare/v1.8.0...v1.9.0) (2021-03-01)
+
+
+### Features
+
+* added level and depth ([9cd4fd3](https://github.com/jlguenego/tree/commit/9cd4fd3308a4c229bdf55cd3e03d0b7969244b71))
+* postorder ([718fd72](https://github.com/jlguenego/tree/commit/718fd72945a67868110747c953b0b9d5f751a536))
+* toString with left brackets representation. ([28e086a](https://github.com/jlguenego/tree/commit/28e086afae43d99a0fea96c20b77f8d7db82d29d))
+
 ## [1.8.0](https://github.com/jlguenego/tree/compare/v1.7.0...v1.8.0) (2021-02-09)
 
 
